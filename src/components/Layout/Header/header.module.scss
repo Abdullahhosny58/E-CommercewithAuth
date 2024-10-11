@@ -1,0 +1,13 @@
+.header {
+  background-color: var(--clr-background-blue) !important;
+  border-bottom: 1px solid var(--clr-border-white);
+
+  .headerContainer {
+    height: 100%;
+    color: var(--clr-color-white);
+  }
+}
+.Icons {
+  margin: 0 15px;
+  cursor: pointer;
+}

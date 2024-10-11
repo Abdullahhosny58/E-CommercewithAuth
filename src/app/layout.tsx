@@ -1,3 +1,5 @@
+import Header from "@/components/Layout/Header/Header";
+import "../theme/globals.scss";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Header />
+      </body>
     </html>
   );
 }
