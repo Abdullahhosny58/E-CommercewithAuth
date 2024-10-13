@@ -27,11 +27,7 @@ const Content = () => {
         <Link href={card.link} key={card.id}>
           <Card className={styles.card} hoverable>
             <Flex>
-              <Meta
-                title={card.title}
-                className={styles.title}
-                style={{ color: "white" }}
-              />
+              <Meta title={card.title} className={styles.title} />
               <span style={{ marginLeft: "8px" }}>
                 <RightOutlined />
               </span>

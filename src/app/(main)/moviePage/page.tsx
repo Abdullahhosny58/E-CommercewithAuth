@@ -1,7 +1,8 @@
+import Movie from "@/components/Modules/Movie";
 import React from "react";
 
 const moviePage = () => {
-  return <div>a</div>;
+  return <Movie />;
 };
 
 export default moviePage;
