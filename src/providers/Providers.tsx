@@ -1,13 +1,25 @@
 "use client";
 
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useState, createContext } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 interface Props {
   children: ReactNode;
 }
 
+export interface SearchContextProps {
+  // Export the interface
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+}
+
+export const SearchContext = createContext<SearchContextProps | undefined>(
+  undefined
+); // Export the context
+
 function Providers({ children }: Props) {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -19,7 +31,11 @@ function Providers({ children }: Props) {
       })
   );
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <SearchContext.Provider value={{ searchQuery, setSearchQuery }}>
+        {children}
+      </SearchContext.Provider>
+    </QueryClientProvider>
   );
 }
 

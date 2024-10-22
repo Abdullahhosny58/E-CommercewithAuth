@@ -3,6 +3,7 @@
 import useGetMovie from "@/query/movie";
 import React from "react";
 import { Card, Col, Row, Spin, Typography, Alert } from "antd";
+import Link from "next/link";
 
 const { Title, Paragraph } = Typography;
 
@@ -21,14 +22,20 @@ const Movie = () => {
             <Card
               hoverable
               cover={
-                <img
-                  alt={movie.title}
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                />
+                <Link href={`/moviePage/[id]`} as={`/moviePage/${movie.id}`}>
+                  <img
+                    alt={movie.title}
+                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  />
+                </Link>
               }
             >
               <Card.Meta
-                title={movie.title}
+                title={
+                  <Link href={`/movie/[id]`} as={`/movie/${movie.id}`}>
+                    {movie.title}
+                  </Link>
+                }
                 description={<Paragraph>{movie.overview}</Paragraph>}
               />
             </Card>
