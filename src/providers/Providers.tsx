@@ -8,18 +8,16 @@ interface Props {
 }
 
 export interface SearchContextProps {
-  // Export the interface
-  searchQuery: string;
-  setSearchQuery: (query: string) => void;
+  searchTerm: string; // Updated to match the variable name
+  setSearchTerm: (query: string) => void;
 }
 
 export const SearchContext = createContext<SearchContextProps | undefined>(
   undefined
-); // Export the context
+);
 
 function Providers({ children }: Props) {
-  const [searchQuery, setSearchQuery] = useState<string>("");
-
+  const [searchTerm, setSearchTerm] = useState("");
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -32,7 +30,7 @@ function Providers({ children }: Props) {
   );
   return (
     <QueryClientProvider client={queryClient}>
-      <SearchContext.Provider value={{ searchQuery, setSearchQuery }}>
+      <SearchContext.Provider value={{ searchTerm, setSearchTerm }}>
         {children}
       </SearchContext.Provider>
     </QueryClientProvider>

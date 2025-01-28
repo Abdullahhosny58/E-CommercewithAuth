@@ -1,13 +1,23 @@
 .header {
-  background-color: var(--clr-background-blue) !important;
-  border-bottom: 1px solid var(--clr-border-white);
-
-  .headerContainer {
-    height: 100%;
-    color: var(--clr-color-white);
+    background-color: var(--clr-background-black) !important;
+    height: 48px;
   }
-}
-.Icons {
-  margin: 0 15px;
-  cursor: pointer;
-}
+  
+  .summerSale {
+    color: var(--clr-color-white) !important;
+
+  }
+  
+  .summerSaleButton {
+    color: var(--clr-color-white) !important; // Ensure the text is white
+    padding: 0; // Remove default padding
+    border: none; // Remove default border
+    background: none; // Remove default background
+    font-size: small;
+
+  }
+  
+  .summerSaleButton:hover {
+    color: var(--clr-color-white) !important;
+    border-bottom: 1px solid #fff; // Add underline on hover
+  }

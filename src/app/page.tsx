@@ -1,10 +1,10 @@
-import Content from "@/components/Layout/Content";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <Content />;
+      {/* <Content />; */}
+      aaa 
     </div>
   );
 };

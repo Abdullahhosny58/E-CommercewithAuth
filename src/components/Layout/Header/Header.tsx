@@ -1,39 +1,33 @@
-"use client";
+"use client"; // Ensures this component is rendered on the client side
 
-import { Flex, Layout } from "antd";
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./header.module.scss";
-import cimaLogo from "../../../public/images/cimaLogo.png";
+import { Button, Flex, Typography } from "antd";
+import styles from "./Header.module.scss";
 
-function Header() {
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  const { Header } = Layout;
+const Header = () => {
+  const { Title } = Typography;
 
   return (
-    <Header className={styles.header}>
-      <Flex
-        justify="space-between"
-        align="center"
-        className={styles.headerContainer}
-      >
-        <Link href="/">
-          <Flex justify="center" align="center">
-            <Image
-              width={110}
-              height={100}
-              alt="logo"
-              src={cimaLogo}
-              className={styles.logo}
-            />
-          </Flex>
-        </Link>
-        <Flex justify="space-between">
-          <Flex>aaas</Flex>
+    <header className={styles.header}>
+      <Flex justify="space-between" align="center">
+        {/* Left section (empty for now) */}
+        <div></div>
+
+        {/* Middle section with the title */}
+        <Flex align="center" justify="center" style={{ flex: 1 }}>
+        <Title level={5} style={{ margin: 10 ,fontSize: "10px" }} className={styles.summerSale}>
+            Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
+            <Button type="text" className={styles.summerSaleButton} size="small" style={{fontSize: "10px" }}>
+              ShopNow
+            </Button>
+          </Title>
         </Flex>
+
+
+        {/* Right section (placeholder content) */}
+        <Flex align="center">a</Flex>
       </Flex>
-    </Header>
+    </header>
   );
-}
+};
 
 export default Header;
