@@ -1,10 +1,11 @@
+import Contact from "@/components/Layout/Content";
 import React from "react";
 
 const page = () => {
-  return (
+  return (  
     <div>
-      {/* <Content />; */}
-      aaa 
+      <Contact />
+      
     </div>
   );
 };

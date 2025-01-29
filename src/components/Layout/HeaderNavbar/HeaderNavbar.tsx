@@ -1,26 +1,33 @@
-"use clinte"
-
+"use client";
 import { Flex, Typography } from "antd";
 import Header from "../Header/Header";
+
+import styles from "./HeaderNavbar.module.scss";
+import Navbar from "./Content/Navbar/Navbar";
+import SearchInput from "./Content/Search/Search";
 
 const HeaderNavbar = () => {
   const { Title } = Typography;
 
-    return (
-      <header>
-        <Header/>
-        <Flex justify="space-around" >
-            <Flex>
-              <Title>
-              Exclusive
-              </Title>
-              </Flex>
-            <Flex>4</Flex>
-            <Flex>3</Flex>
+  return (
+    <header>
+      <Header />
+      <Flex justify="space-around" className={styles.header}>
+        <Flex>
+          <Title level={3} className={styles.logo}>
+            Exclusive
+          </Title>
         </Flex>
-      </header>
-    );
-  };
-  
-  export default HeaderNavbar;
-  
+        <Flex>
+          <Navbar />
+        </Flex>
+
+        <Flex>
+          <SearchInput />
+        </Flex>
+      </Flex>
+    </header>
+  );
+};
+
+export default HeaderNavbar;

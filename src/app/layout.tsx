@@ -2,6 +2,7 @@ import "../theme/globals.scss";
 import type { Metadata } from "next";
 import Providers from "@/providers/Providers";
 import HeaderNavbar from "@/components/Layout/HeaderNavbar/HeaderNavbar";
+import { Divider } from "antd";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +19,9 @@ export default function RootLayout({
       <body>
         <Providers>
           <HeaderNavbar />
+          <Divider />
           {children}
+
         </Providers>
       </body>
     </html>
