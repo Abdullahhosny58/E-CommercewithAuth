@@ -1,11 +1,16 @@
+"use client";
+
+import { Flex } from "antd";
 import Sidebar from "./Sidebar/Sidebar";
+import MySwiper from "./Swiper/Swiper";
 
 const Contact: React.FC = () => {
   return (
-    <div>
+    <Flex>
       <Sidebar />
-    </div>
-  )
+      <MySwiper />
+    </Flex>
+  );
 };
 
 export default Contact;
