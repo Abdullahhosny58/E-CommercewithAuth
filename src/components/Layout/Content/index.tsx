@@ -6,7 +6,7 @@ import MySwiper from "./Swiper/Swiper";
 
 const Contact: React.FC = () => {
   return (
-    <Flex>
+    <Flex justify="space-between" gap={2}>
       <Sidebar />
       <MySwiper />
     </Flex>

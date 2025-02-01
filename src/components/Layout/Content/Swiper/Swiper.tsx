@@ -4,61 +4,66 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import logo from "@/public/images/e-commerce.jpg";
+import imageOne from "@/public/images/banner-15.jpg";
+import imageTwo from "@/public/images/banner-25.jpg";
 import { Button, Flex, Typography } from "antd";
 import styles from "./Swiper.module.scss";
-
+import Image from "next/image";
 
 const MySwiper = () => {
-
   return (
     <Swiper
-      pagination={{
-        dynamicBullets: true,
-      }}
+      pagination={{ dynamicBullets: true }}
       modules={[Pagination]}
       className={styles.swiper}
-      loop={true} // Enable infinite loop
-      autoplay={{ delay: 3000 }} // Add autoplay
+      loop={true}
+      autoplay={{ delay: 3000 }}
     >
-      
       <SwiperSlide>
-        <img src={logo.src} />
-        <Flex className={styles.box} align="center" justify="flex-start">
-          <div className={styles.swiperSlide}>
-            <Typography.Title level={4} className={styles.title}>
-              iPhone 14 Series
+        <div className={styles.slide}>
+          {/* الصورة */}
+          <Image src={imageOne.src} alt="Men Collection" className={styles.image} layout="fill" />
+          {/* النص فوق الصورة */}
+          <div className={styles.textBox}>
+            <Typography.Text className={styles.collection}>LIFESTYLE COLLECTION</Typography.Text>
+            <Typography.Title level={2} className={styles.title}>
+              MEN
             </Typography.Title>
-            <Typography.Text  className={styles.subtitle}>
-              A special collection for you
-            </Typography.Text>
+            <Flex justify="space-between" vertical>
             <Typography.Text className={styles.discount}>
-              Up to <span className={styles.percentage}>10% off</span> Voucher
+              SALE UP TO <span className={styles.percentage}>30% OFF</span>
             </Typography.Text>
-            <Button  type="text" className={styles.navItem}>
-              Shop Now →
+            <Typography.Text className={styles.description}>
+              Get Free Shipping on orders over $99.00
+            </Typography.Text>
+            <Button type="text"className={styles.shopNow}>
+              SHOP NOW
             </Button>
+            </Flex>
+          
           </div>
-        </Flex>
+        </div>
       </SwiperSlide>
+
       <SwiperSlide>
-        <img src={logo.src} />
-        <Flex className={styles.box} align="center" justify="flex-start">
-          <div className={styles.swiperSlide}>
-            <Typography.Title level={4} className={styles.title}>
-              iPhone 14 Series
+        <div className={styles.slide}>
+          <Image src={imageTwo.src} alt="Women Collection" className={styles.image} layout="fill" />
+          <div className={styles.textBox}>
+            <Typography.Text className={styles.collection}>LIFESTYLE COLLECTION</Typography.Text>
+            <Typography.Title level={2} className={styles.title}>
+              WOMEN
             </Typography.Title>
-            <Typography.Text  className={styles.subtitle}>
-              A special collection for you
-            </Typography.Text>
             <Typography.Text className={styles.discount}>
-              Up to <span className={styles.percentage}>10% off</span> Voucher
+              SALE UP TO <span className={styles.percentage}>25% OFF</span>
             </Typography.Text>
-            <Button  type="text" className={styles.navItem}>
-              Shop Now →
+            <Typography.Text className={styles.description}>
+              Get Free Shipping on orders over $99.00
+            </Typography.Text>
+            <Button type="text" className={styles.shopNow}>
+              SHOP NOW
             </Button>
           </div>
-        </Flex>
+        </div>
       </SwiperSlide>
     </Swiper>
   );
