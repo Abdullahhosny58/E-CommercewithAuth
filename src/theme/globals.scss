@@ -15,12 +15,15 @@ body {
   //Colors
   --clr-color-white: #fff;
   --clr-color-black: #000000;
+  --clr-danger: #ff4d4f;
+  --clr-success: #52c41a;
 
   //Border Colors
   --clr-border-white: #dde8f0;
 
   //Background Colors
   --clr-background-black: #000000;
+  --clr-background-red: #DB4444;
 }
 .ant-card-meta-title {
   color: #dde8f0 !important;

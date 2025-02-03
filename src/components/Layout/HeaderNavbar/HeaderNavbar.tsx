@@ -10,9 +10,10 @@ const HeaderNavbar = () => {
   const { Title } = Typography;
 
   return (
+    
     <header>
       <Header />
-      <Flex justify="space-around" className={styles.header}>
+      <Flex justify="space-around" className={styles.header} align="center">
         <Flex>
           <Title level={3} className={styles.logo}>
             Exclusive

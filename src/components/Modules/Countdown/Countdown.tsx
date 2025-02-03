@@ -4,7 +4,7 @@ import { Typography, Row, Col, Flex } from "antd";
 const { Text } = Typography;
 
 const CountdownTimer = () => {
-  const targetTime = new Date().getTime() + 1000 * 24 * 60 * 60 * 1000; // 3 days from now
+  const targetTime = new Date().getTime() + 7 * 24 * 60 * 60 * 1000; // 7 days from now
 
   const calculateTimeLeft = () => {
     const difference = targetTime - new Date().getTime();

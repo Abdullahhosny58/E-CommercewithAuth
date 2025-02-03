@@ -2,6 +2,7 @@
 
 import React, { ReactNode, useState, createContext } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ProviderContext from "../../context/ProvidersContext";
 
 interface Props {
   children: ReactNode;
@@ -30,9 +31,12 @@ function Providers({ children }: Props) {
   );
   return (
     <QueryClientProvider client={queryClient}>
+      <ProviderContext>
       <SearchContext.Provider value={{ searchTerm, setSearchTerm }}>
         {children}
       </SearchContext.Provider>
+      </ProviderContext>
+      
     </QueryClientProvider>
   );
 }

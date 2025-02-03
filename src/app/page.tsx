@@ -1,8 +1,12 @@
+"use client"
+
 import Contact from "@/components/Layout/Content";
 import FlashSales from "@/components/Layout/FlashSales/FlashSales";
 import React from "react";
 
-const page = () => {
+export default function Page() {
+  
+  
   return (  
     <div>
       <Contact />
@@ -11,4 +15,3 @@ const page = () => {
   );
 };
 
-export default page;

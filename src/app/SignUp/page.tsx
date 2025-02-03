@@ -1,9 +1,15 @@
-"use client"
+"use client";
 
 import useRegister from "@/query/auth/postAccount";
-import { Button, Form, Input } from "antd";
+import CustomNotification from "@/shared/Notification";
+import { Button, Flex, Form, Input, Typography } from "antd";
 import { useRouter } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
+import styles from "./SignUp.module.scss";
+import Image from "next/image";
+import loginImage from "@/public/images/dl.beatsnoop 1.png";
+import Link from "next/link";
+const { Title } = Typography;
 
 interface FormData {
   name: string;
@@ -15,75 +21,91 @@ const SignUp = () => {
   const { mutate, isPending } = useRegister();
   const router = useRouter();
 
-  const { control, handleSubmit, formState: { errors } } = useForm<FormData>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
     defaultValues: {
       name: "",
       email: "",
-      password: ""
-    }
+      password: "",
+    },
   });
 
   const onSubmit = (data: FormData) => {
     console.log(data);
-    mutate(data); // Pass the form data to the mutate function
+    mutate(data, {
+      onSuccess: (res) => {
+        CustomNotification({
+          type: "success",
+          message: res?.message || "Success",
+        });
+        router.push("/SignIn"); // Ensure router.push() is used if it's Next.js
+      },
+      onError: (error) => {
+        CustomNotification({
+          type: "error",
+          message: error?.message || "Something went wrong",
+        });
+      },
+    });
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: '0 auto', padding: '2rem' }}>
-      <h1>Sign Up</h1>
-      <Form onFinish={handleSubmit(onSubmit)} layout="vertical">
-        <Form.Item
-          label="Email"
-          validateStatus={errors.email ? "error" : ""}
-          help={errors.email?.message}
-        >
-          <Controller
-            name="email"
-            control={control}
-            rules={{
-              required: 'Please input your email!',
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: 'Invalid email address'
-              }
-            }}
-            render={({ field }) => <Input {...field} type="email" />}
-          />
-        </Form.Item>
+    <Flex className={styles.container} align="center" justify="space-around">
+      <Flex>
+        <Image src={loginImage} className={styles.loginImage} alt="singUp" />
+      </Flex>
+      <Flex vertical className={styles.box}>
+        <Title level={3}>Create an account</Title>
+        <Title level={5}>Enter your details below</Title>
+        <Flex>
+          <Form
+            onFinish={handleSubmit(onSubmit)}
+            layout="vertical"
+            className={styles.from}
+          >
+            <Form.Item label="Email" help={errors.email?.message}>
+              <Controller
+                name="email"
+                control={control}
+                render={({ field }) => <Input {...field} type="email" />}
+              />
+            </Form.Item>
 
-        <Form.Item
-          label="Name"
-          validateStatus={errors.name ? "error" : ""}
-          help={errors.name?.message}
-        >
-          <Controller
-            name="name"
-            control={control}
-            rules={{ required: 'Please input your name!' }}
-            render={({ field }) => <Input {...field} type="text" />}
-          />
-        </Form.Item>
+            <Form.Item label="Name" help={errors.name?.message}>
+              <Controller
+                name="name"
+                control={control}
+                render={({ field }) => <Input {...field} type="text" />}
+              />
+            </Form.Item>
 
-        <Form.Item
-          label="Password"
-          validateStatus={errors.password ? "error" : ""}
-          help={errors.password?.message}
-        >
-          <Controller
-            name="password"
-            control={control}
-            rules={{ required: 'Please input your password!' }}
-            render={({ field }) => <Input.Password {...field} />}
-          />
-        </Form.Item>
+            <Form.Item label="Password" help={errors.password?.message}>
+              <Controller
+                name="password"
+                control={control}
+                render={({ field }) => <Input.Password {...field} />}
+              />
+            </Form.Item>
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={isPending}>
-            Sign Up
-          </Button>
-        </Form.Item>
-      </Form>
-    </div>
+            <Form.Item>
+              <Button
+                className={styles.buttom}
+                htmlType="submit"
+                loading={isPending}
+              >
+                Sign Up
+              </Button>
+              <Button type="text">
+                <Link href="/SignIn">Already have an account? Log in</Link>
+              </Button>
+            </Form.Item>
+          </Form>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 };
 

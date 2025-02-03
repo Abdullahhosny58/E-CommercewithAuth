@@ -21,9 +21,9 @@ const MySwiper = () => {
     >
       <SwiperSlide>
         <div className={styles.slide}>
-          {/* الصورة */}
+
           <Image src={imageOne.src} alt="Men Collection" className={styles.image} layout="fill" />
-          {/* النص فوق الصورة */}
+         
           <div className={styles.textBox}>
             <Typography.Text className={styles.collection}>LIFESTYLE COLLECTION</Typography.Text>
             <Typography.Title level={2} className={styles.title}>
@@ -53,6 +53,7 @@ const MySwiper = () => {
             <Typography.Title level={2} className={styles.title}>
               WOMEN
             </Typography.Title>
+            <Flex justify="space-between" vertical>
             <Typography.Text className={styles.discount}>
               SALE UP TO <span className={styles.percentage}>25% OFF</span>
             </Typography.Text>
@@ -62,6 +63,7 @@ const MySwiper = () => {
             <Button type="text" className={styles.shopNow}>
               SHOP NOW
             </Button>
+            </Flex>
           </div>
         </div>
       </SwiperSlide>

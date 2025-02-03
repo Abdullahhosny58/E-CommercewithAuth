@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 import { Button, Card, Flex, Typography } from "antd";
 import styles from "./SwiperPrdouct.module.scss";
 import Image from "next/image";
-import { HeartOutlined } from "@ant-design/icons";
+import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
 import { FC, useState } from "react";
 import { useGetAllProducts } from "@/query/products/getAllProduct/getAllProduct";
@@ -13,7 +13,7 @@ import { useGetAllProducts } from "@/query/products/getAllProduct/getAllProduct"
 const { Text } = Typography;
 
 const SwiperPrdouct: FC = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(5);
   const { data, isLoading, isError, refetch } = useGetAllProducts(page);
 
   const loadMoreProducts = () => {
@@ -73,16 +73,28 @@ const SwiperPrdouct: FC = () => {
                         layout="fill"
                         objectFit="contain"
                       />
-                      <Button type="text" className={styles.button} style={{ width: "100%", top: "120px" }}>
-                        Add to cart
-                      </Button>
+                      <Flex align="center" justify="space-between"> 
+                        <Button type="text"  className={styles.button}>
+                          <ShoppingCartOutlined />
+                        </Button>
+                        <Button type="text"  className={styles.button}>
+                          <HeartOutlined  />
+                        </Button>
+                      </Flex>
                     </Flex>
                   }
-                  actions={[<HeartOutlined key="like" />]}
                 >
                   <Meta
-                    title={<Text ellipsis={{ tooltip: product.title }}>{product.title}</Text>}
-                    description={<Text ellipsis={{ tooltip: product.description }}>{product.description}</Text>}
+                    title={
+                      <Text ellipsis={{ tooltip: product.title }}>
+                        {product.title}
+                      </Text>
+                    }
+                    description={
+                      <Text ellipsis={{ tooltip: product.description }}>
+                        {product.description}
+                      </Text>
+                    }
                   />
                 </Card>
               </Flex>
@@ -92,8 +104,8 @@ const SwiperPrdouct: FC = () => {
       </Swiper>
 
       {!isLoading && !isError && (
-        <Button type="primary" onClick={loadMoreProducts} style={{ marginTop: "20px", display: "block", marginLeft: "auto", marginRight: "auto" }}>
-          Load More
+        <Button type="text" onClick={loadMoreProducts}>
+          Show More
         </Button>
       )}
     </>

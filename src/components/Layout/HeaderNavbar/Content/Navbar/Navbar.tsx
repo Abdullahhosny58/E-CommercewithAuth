@@ -1,27 +1,44 @@
 "use client";
-import { Flex  } from "antd";
-
+import { Button, Flex } from "antd";
 import styles from "./Navbar.module.scss";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
-const Navbar = () => {
+export default function Navbar() {
+  const { data: session, status } = useSession();
+
+  console.log("session", session, status);
 
   return (
     <header>
       <Flex justify="space-between">
-        
         <Flex align="center" justify="space-between">
           <ul className={styles.navList}>
-            <Link  href={"/"}  className={styles.navItem}>Home</Link>
-            <li className={styles.navItem}>Contact</li>
-            <li className={styles.navItem}>About</li>
-            <Link href={"/SignUp"} className={styles.navItem}>Sign Up</Link>
+            <li>
+              <Link href="/">
+                <Button type="text">Home</Button>
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact">
+                <Button type="text">Contact</Button>
+              </Link>
+            </li>
+            <li>
+              <Link href="/about">
+                <Button type="text">About</Button>
+              </Link>
+            </li>
+            {session ? (
+              <Button type="text">Welcome, {session.user?.name}</Button>
+            ) : (
+              <Button type="text">
+                <Link href="/SignIn">Sign In</Link>
+              </Button>
+            )}
           </ul>
         </Flex>
-
       </Flex>
     </header>
   );
-};
-
-export default Navbar;
+}

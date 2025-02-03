@@ -16,7 +16,7 @@ const FlashSales: FC = () => {
         <div className={styles.bgRed} ></div>
         <Title level={5}>Today’s</Title>
       </Flex>
-      <Flex gap={10} align="center" justify="space-between">
+      <Flex gap={10} align="center" justify="space-between" className={styles.box}>
       <Title className={styles.title} level={2}>Flash Sales</Title>
       <Flex>
       <CountdownTimer/>
