@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["image.tmdb.org"], // Add the domain for TMDb images
+    domains: ["fakestoreapi.com"], // Allow external images
   },
 };
 
-export default nextConfig;
+export default nextConfig; // Correct way for ES modules
