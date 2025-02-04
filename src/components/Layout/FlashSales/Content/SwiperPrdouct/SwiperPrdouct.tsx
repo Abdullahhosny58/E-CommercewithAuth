@@ -6,22 +6,27 @@ import { Button, Card, Flex, Typography } from "antd";
 import styles from "./SwiperPrdouct.module.scss";
 import Image from "next/image";
 import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-
-import { FC, useState } from "react";
-import { useGetAllProducts } from "@/query/products/getAllProduct/getAllProduct";
+import { FC, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "@/rtk/slices/productSlice";
+import { addToCart } from "@/rtk/slices/cartSlice";
+import { AppDispatch, RootState } from "@/rtk/store";
 
 const { Text } = Typography;
 
 const SwiperPrdouct: FC = () => {
-  const [page, setPage] = useState(5);
-  const { data, isLoading, isError, refetch } = useGetAllProducts(page);
+  // Access the products array correctly from the Redux state
+  const { products, loading, error } = useSelector((state:RootState) => state.products);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const loadMoreProducts = () => {
-    setPage((prevPage) => prevPage + 1);
-    refetch();
-  };
+  useEffect(() => {
+    dispatch(fetchProducts(5)); // Fetch products on component mount
+  }, [dispatch]);
 
   const { Meta } = Card;
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <>
@@ -52,7 +57,7 @@ const SwiperPrdouct: FC = () => {
           },
         }}
       >
-        {data?.map((product, index) => (
+        {products.map((product, index: number) => (
           <SwiperSlide key={index}>
             <Flex className={styles.slide} justify="center" align="center">
               <Flex className={styles.cardWrapper}>
@@ -73,12 +78,16 @@ const SwiperPrdouct: FC = () => {
                         layout="fill"
                         objectFit="contain"
                       />
-                      <Flex align="center" justify="space-between"> 
-                        <Button type="text"  className={styles.button}>
+                      <Flex align="center" justify="space-between">
+                        <Button
+                          type="text"
+                          className={styles.button}
+                          onClick={() => dispatch(addToCart(product))}
+                        >
                           <ShoppingCartOutlined />
                         </Button>
-                        <Button type="text"  className={styles.button}>
-                          <HeartOutlined  />
+                        <Button type="text" className={styles.button}>
+                          <HeartOutlined />
                         </Button>
                       </Flex>
                     </Flex>
@@ -102,12 +111,6 @@ const SwiperPrdouct: FC = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      {!isLoading && !isError && (
-        <Button type="text" onClick={loadMoreProducts}>
-          Show More
-        </Button>
-      )}
     </>
   );
 };

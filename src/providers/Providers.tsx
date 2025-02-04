@@ -1,24 +1,17 @@
 "use client";
 
-import React, { ReactNode, useState, createContext } from "react";
+import React, { ReactNode, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ProviderContext from "../../context/ProvidersContext";
+import { ProductsProvider } from "./contextProvidersProduct";
+import { store } from "@/rtk/store";
+import { Provider } from "react-redux";
 
 interface Props {
   children: ReactNode;
 }
 
-export interface SearchContextProps {
-  searchTerm: string; // Updated to match the variable name
-  setSearchTerm: (query: string) => void;
-}
-
-export const SearchContext = createContext<SearchContextProps | undefined>(
-  undefined
-);
-
 function Providers({ children }: Props) {
-  const [searchTerm, setSearchTerm] = useState("");
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -31,12 +24,11 @@ function Providers({ children }: Props) {
   );
   return (
     <QueryClientProvider client={queryClient}>
-      <ProviderContext>
-      <SearchContext.Provider value={{ searchTerm, setSearchTerm }}>
-        {children}
-      </SearchContext.Provider>
-      </ProviderContext>
-      
+      <Provider store={store}>
+        <ProviderContext>
+          <ProductsProvider>{children}</ProductsProvider>
+        </ProviderContext>
+      </Provider>
     </QueryClientProvider>
   );
 }
