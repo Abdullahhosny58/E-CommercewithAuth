@@ -5,7 +5,7 @@ interface Product {
   id: number;
   name: string;
   price: number;
-  quantity?: number; // Optional because it will be added when the product is added to the cart
+  quantity?: number;
 }
 
 // Define the initial state as an array of Product
@@ -15,7 +15,6 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    // Add a product to the cart
     addToCart: (state, action: PayloadAction<Product>) => {
       const findProduct = state.find((product) => product.id === action.payload.id);
       if (findProduct) {
