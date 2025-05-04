@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 Frontend Challenge – Minimal E-commerce Platform
 
-## Getting Started
+A minimal e-commerce platform built with Next.js, React, and TypeScript. It includes user authentication (login and registration) and a fully responsive dashboard. The application features a clean UI, efficient state management, and a well-structured component architecture, ensuring scalability and maintainability for future enhancements.
 
-First, run the development server:
+---
 
+## 🛠 Running Instructions
+
+### 🔧 Install dependencies:
 ```bash
+npm install
+▶️ Start development server:
+bash
+Copy
+Edit
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The app will be available at http://localhost:3000
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📡 Run JSON server (for fake API):
+bash
+Copy
+Edit
+json-server --watch db.json --port 5000
+Available at http://localhost:5000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🧪 Run tests:
+bash
+Copy
+Edit
+npm run test
+📁 Project Structure
+<details> <summary>Click to view</summary>
+pgsql
+Copy
+Edit
+├─ .eslintrc.json
+├─ context
+│  └─ ProvidersContext.tsx
+├─ next.config.mjs
+├─ package.json
+├─ prisma
+│  ├─ .env
+│  └─ schema.prisma
+├─ src
+│  ├─ app
+│  │  ├─ api
+│  │  │  └─ auth, register
+│  │  ├─ SignIn, SignUp, categories
+│  │  ├─ layout.tsx, page.tsx
+│  ├─ components
+│  │  ├─ Layout, Inputs, FlashSales, HeaderNavbar
+│  ├─ hooks, lib, providers, shared, theme
+│  ├─ query, rtk, services
+├─ public/images
+└─ tsconfig.json
+</details>
+📦 Tech Stack & Libraries
+Next.js – React Framework with SSR
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+TypeScript – Static typing for JavaScript
 
-## Learn More
+React Query – Data fetching and caching
 
-To learn more about Next.js, take a look at the following resources:
+Redux Toolkit – Global state management
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Axios – API communication
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Ant Design – UI component library
 
-## Deploy on Vercel
+SASS (SCSS) – CSS preprocessor for styling
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Vitest – Unit testing framework
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🎨 Code Quality
+ESLint – Linting for consistent code quality
+
+Prettier – Automatic code formatting
+
+🚀 Future Improvements
+✅ Make it fully responsive across all devices
+
+✅ Add GitHub Actions for CI/CD deployment
+
+✅ Improve test coverage with unit and integration tests
