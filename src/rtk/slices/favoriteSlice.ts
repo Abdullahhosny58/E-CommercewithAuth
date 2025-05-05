@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// Define the structure of a product
 interface Product {
   id: number;
   name: string;
@@ -8,25 +7,22 @@ interface Product {
   quantity?: number;
 }
 
-// Define the initial state as an array of Product
-const initialState: Product[] = [];
-
-export const cartSlice = createSlice({
-  name: "cart",
-  initialState,
+export const favoriteSlice = createSlice({
+  name: "favoriteSlice",
+  initialState: [] as Product[],
   reducers: {
-    addToCart: (state, action: PayloadAction<Product>) => {
+    addToFavorite: (state, action: PayloadAction<Product>) => {
       const product = action.payload;
       const existingProductIndex = state.findIndex((item) => item.id === product.id);
       const quantityChange = product.quantity ?? 1;
-    
+
       if (existingProductIndex !== -1) {
         const existingProduct = state[existingProductIndex];
         const newQuantity = (existingProduct.quantity || 0) + quantityChange;
-    
+
         if (newQuantity <= 0) {
-          // احذف المنتج من الـ cart
-          state.splice(existingProductIndex, 1); // ❗️حل آمن بدون إرجاع state جديد
+          // احذف المنتج من الـ favorites
+          state.splice(existingProductIndex, 1);
         } else {
           existingProduct.quantity = newQuantity;
         }
@@ -36,21 +32,19 @@ export const cartSlice = createSlice({
         }
       }
     },
-    
-    
-    // Remove a product from the cart
-    deleteFromCart: (state, action: PayloadAction<number>) => {
-      return state.filter((product) => product.id !== action.payload);
+
+    deleteFromFavorite: (state, action: PayloadAction<number>) => {
+      // احذف المنتج حسب الـ id
+      return state.filter((item) => item.id !== action.payload);
     },
-    // Clear the cart
+
     clear: () => {
+      // أفرغ المفضلة تمامًا
       return [];
     },
   },
 });
 
-// Export the actions
-export const { addToCart, deleteFromCart, clear } = cartSlice.actions;
+export const { addToFavorite, deleteFromFavorite, clear } = favoriteSlice.actions;
 
-// Export the reducer
-export default cartSlice.reducer;
+export default favoriteSlice.reducer;

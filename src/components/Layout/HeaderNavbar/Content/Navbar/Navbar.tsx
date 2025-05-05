@@ -36,6 +36,9 @@ export default function Navbar() {
                 <Link href="/SignIn">Sign In</Link>
               </Button>
             )}
+            <Button type="text">
+                <Link href="/admin">DashBoard</Link>
+              </Button>
           </ul>
         </Flex>
       </Flex>

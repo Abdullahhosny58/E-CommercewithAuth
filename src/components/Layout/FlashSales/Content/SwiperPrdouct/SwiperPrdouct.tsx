@@ -11,12 +11,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "@/rtk/slices/productSlice";
 import { addToCart } from "@/rtk/slices/cartSlice";
 import { AppDispatch, RootState } from "@/rtk/store";
+import { addToFavorite } from "@/rtk/slices/favoriteSlice";
 
 const { Text } = Typography;
 
 const SwiperPrdouct: FC = () => {
   // Access the products array correctly from the Redux state
-  const { products, loading, error } = useSelector((state:RootState) => state.products);
+  const { products, loading, error } = useSelector(
+    (state: RootState) => state.products
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -86,7 +89,11 @@ const SwiperPrdouct: FC = () => {
                         >
                           <ShoppingCartOutlined />
                         </Button>
-                        <Button type="text" className={styles.button}>
+                        <Button
+                          type="text"
+                          className={styles.button}
+                          onClick={() => dispatch(addToFavorite(product))}
+                        >
                           <HeartOutlined />
                         </Button>
                       </Flex>

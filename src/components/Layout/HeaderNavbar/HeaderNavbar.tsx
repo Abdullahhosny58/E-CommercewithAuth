@@ -22,7 +22,6 @@ const HeaderNavbar = () => {
         <Flex>
           <Navbar />
         </Flex>
-
         <Flex>
           <SearchInput />
         </Flex>
